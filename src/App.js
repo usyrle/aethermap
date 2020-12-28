@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -10,6 +10,7 @@ import {
   RouteTransitionProvider,
   useTransitionHistory
 } from 'react-route-transition';
+import cardImages from './images';
 import './App.css';
 
 
@@ -63,8 +64,22 @@ function GameOpts() {
 }
 
 function GameSession() {
-  let { gameId } = useParams();
-  return <h3>Requested topic ID: {gameId}</h3>;
+  const { gameId } = useParams();
+  const [cardImgSrc, setCardImgSrc] = useState("");
+
+  axios.get(`https://aetherstream.herokuapp.com/deck/${gameId}`)
+    .then((response) => {
+      console.log(response)
+      let cardId = response.data.currentPlane.multiverseId
+      console.log(cardImages[cardId].default)
+      setCardImgSrc(cardImages[cardId].default)
+    })
+
+  return (
+    <div class="plane-card">
+      <img src={cardImgSrc} alt="the current plane" />
+    </div>
+  )
 }
 
 export default App;

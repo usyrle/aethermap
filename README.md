@@ -9,6 +9,8 @@ Future features:
 * Planar die roller
 * Support [Eternities Map](https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0)
 
+Plane and Phenomenon card images sourced from [Scryfall](https://scryfall.com/).
+
 ---
 
 Aethermap is unofficial Fan Content permitted under the Fan Content Policy.

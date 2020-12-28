@@ -4,11 +4,9 @@ footer {
 
 .App {
   text-align: center;
+  min-height: 500px;
 }
 
-.game-opts {
-  height: 500px;
-}
 
 .game-opts button {
   background: #E09200;
@@ -46,4 +44,8 @@ footer {
 
 .fan-policy p {
   margin: 5px 0;
+}
+
+.plane-card img {
+  width: 80%;
 }
