@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  useParams
-} from "react-router-dom";
-import {
-  RouteTransitionProvider,
-  useTransitionHistory
-} from 'react-route-transition';
-import cardImages from './images';
-import './App.css';
+  Route
+} from "react-router-dom"
+import { RouteTransitionProvider } from 'react-route-transition'
 
+import { GameOpts } from './GameOpts'
+import { GameSession } from './GameSession'
+import './App.css'
 
 function App() {
   return (
@@ -44,42 +40,4 @@ function App() {
   )
 }
 
-function GameOpts() {
-  const history = useTransitionHistory();
-
-  const requestNewDeck = () => {
-    axios.post("https://aetherstream.herokuapp.com/deck/generate", {
-      size: 10,
-      phenomena: true,
-    }).then((response) => {
-      history.push(response.data.id)
-    })
-  }
-
-  return (
-    <div className="game-opts">
-      <button className="new-game" onClick={requestNewDeck}>New Game</button>
-    </div>
-  )
-}
-
-function GameSession() {
-  const { gameId } = useParams();
-  const [cardImgSrc, setCardImgSrc] = useState("");
-
-  axios.get(`https://aetherstream.herokuapp.com/deck/${gameId}`)
-    .then((response) => {
-      console.log(response)
-      let cardId = response.data.currentPlane.multiverseId
-      console.log(cardImages[cardId].default)
-      setCardImgSrc(cardImages[cardId].default)
-    })
-
-  return (
-    <div class="plane-card">
-      <img src={cardImgSrc} alt="the current plane" />
-    </div>
-  )
-}
-
-export default App;
+export default App

@@ -1,0 +1,13 @@
+.game-opts button {
+    background: #E09200;
+    border: none;
+    border-radius: 10px;
+    color: gainsboro;
+    font-weight: bold;
+    margin: 20px;
+    padding: 10px;
+}
+
+.game-opts button:active {
+    background: #E09200CD;
+}

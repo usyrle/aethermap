@@ -7,21 +7,6 @@ footer {
   min-height: 500px;
 }
 
-
-.game-opts button {
-  background: #E09200;
-  border: none;
-  border-radius: 10px;
-  color: gainsboro;
-  font-weight: bold;
-  margin: 20px;
-  padding: 10px;
-}
-
-.game-opts button:active {
-  background: #E09200CD;
-}
-
 .source-links {
   display: flex;
   justify-content: center;
@@ -44,8 +29,4 @@ footer {
 
 .fan-policy p {
   margin: 5px 0;
-}
-
-.plane-card img {
-  width: 80%;
 }
