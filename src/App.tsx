@@ -1,11 +1,21 @@
 import React from 'react';
+import axios from 'axios';
 import './App.css';
 
 function App() {
+  const requestNewDeck = () => {
+    axios.post("https://aetherstream.herokuapp.com/deck/generate", {
+      size: 10,
+      phenomena: true,
+    }).then((response) => {
+      console.log(response)
+    });
+  }
+
   return (
     <div className="App">
       <div className="game-opts">
-        <button className="new-game">New Game</button>
+        <button className="new-game" onClick={requestNewDeck}>New Game</button>
       </div>
       <footer>
         <div className="source-links">
