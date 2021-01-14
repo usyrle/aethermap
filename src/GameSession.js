@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from "react-router-dom"
 import { useTransitionHistory } from 'react-route-transition'
@@ -13,6 +13,14 @@ export function GameSession() {
 
     const gameUrl = `https://aetherstream.herokuapp.com/deck/${gameId}`
 
+    const getGameInfo = () => {
+        axios.get(gameUrl)
+        .then((response) => {
+            let cardId = response.data.currentPlane.multiverseId;
+            setCardImgSrc(cardImages[cardId].default);
+        })
+    }
+
     const goHome = () => {
         history.push('/')
     }
@@ -21,11 +29,11 @@ export function GameSession() {
         setCardImgSrc(getNextPlane(gameUrl))
     }
 
-    axios.get(gameUrl)
-        .then((response) => {
-            let cardId = response.data.currentPlane.multiverseId;
-            setCardImgSrc(cardImages[cardId].default);
-        })
+    useEffect(() => {
+        getGameInfo()
+        const interval = setInterval(() => {getGameInfo()}, 60000);
+        return () => clearInterval(interval);
+    });
 
     return (
         <div className="game-session">
