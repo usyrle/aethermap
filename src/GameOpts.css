@@ -12,3 +12,33 @@
 .game-opts button:active {
     background: #E09200CD;
 }
+
+.game-opts-content {
+    margin: 1em 33%;
+    text-align: left;
+}
+
+.game-opts-content input {
+    text-align: right;
+}
+
+.game-opts-content input::placeholder {
+    color: gray;
+}
+
+/* Chrome, Safari, Edge, Opera - borrowed from https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+.game-opts-content input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox - borrowed from https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+.game-opts-content input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.form-label {
+    font-weight: bold;
+    margin: 1em;
+}
