@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useTransitionHistory } from 'react-route-transition'
+import BeatLoader from "react-spinners/BeatLoader";
 
 import './GameOpts.css'
 
@@ -8,8 +9,12 @@ export function GameOpts() {
     const history = useTransitionHistory()
     const [size, setSize] = useState(10)
     const [phenomena, setPhenomena] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const [gameButtonText, setGameButtonText] = useState('New Game')
 
     const requestNewDeck = () => {
+        setGameButtonText('')
+        setLoading(true)
         axios.post("https://aetherstream.herokuapp.com/deck/generate", {
             size: size,
             phenomena: phenomena,
@@ -29,7 +34,10 @@ export function GameOpts() {
     return (
         <div className="game-opts">
             <div className="button-row">
-                <button className="new-game" onClick={requestNewDeck}>New Game</button>
+                <button className="new-game" onClick={requestNewDeck}>
+                    <BeatLoader color="#DCDCDC" loading={loading} size={10}/>
+                    {gameButtonText}
+                </button>
             </div>
             <div className="game-opts-content">
                 <div>
